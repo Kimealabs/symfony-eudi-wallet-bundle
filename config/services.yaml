@@ -1,0 +1,41 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Kimealabs\EudiWalletBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/EudiWalletBundle.php'
+            - '../src/Model/'
+            - '../src/Exception/'
+
+    Kimealabs\EudiWalletBundle\Nonce\NonceManager:
+        arguments:
+            $ttl: '%eudi_wallet.nonce_ttl%'
+
+    Kimealabs\EudiWalletBundle\Trust\TrustedIssuersListProvider:
+        arguments:
+            $trustedIssuersListUri: '%eudi_wallet.trusted_issuers_list_uri%'
+
+    Kimealabs\EudiWalletBundle\Trust\JwksProvider: ~
+
+    Kimealabs\EudiWalletBundle\Verifier\VpTokenVerifier:
+        arguments:
+            $clientId: '%eudi_wallet.relying_party.client_id%'
+
+    Kimealabs\EudiWalletBundle\RelyingParty\PresentationRequestBuilder:
+        arguments:
+            $clientId: '%eudi_wallet.relying_party.client_id%'
+            $redirectUri: '%eudi_wallet.relying_party.redirect_uri%'
+
+    Kimealabs\EudiWalletBundle\Security\EudiWalletAuthenticator:
+        arguments:
+            $callbackPath: '%eudi_wallet.relying_party.callback_path%'
+            $loginPath: '%eudi_wallet.relying_party.login_path%'
+        public: true
+
+    Kimealabs\EudiWalletBundle\Security\EudiWalletUserProvider:
+        public: true

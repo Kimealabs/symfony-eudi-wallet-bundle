@@ -1,0 +1,15 @@
+/vendor/
+/.phpunit.cache/
+/.phpunit.result.cache
+/.php-cs-fixer.cache
+/var/
+/.env.local
+/.env.*.local
+/composer.lock
+/NUL
+
+# Claude Code local data
+/.claude/
+
+# Dev container (local tooling only)
+/.devcontainer/

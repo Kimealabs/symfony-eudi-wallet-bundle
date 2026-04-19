@@ -1,0 +1,8 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    excludePaths:
+        - src/DependencyInjection/Configuration.php
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
